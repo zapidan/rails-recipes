@@ -1,5 +1,5 @@
 <header class="navbar navbar-fixed-top navbar-default">
-  <%= link_to "My Recipes", "", class: "btn btn-lg btn-success", id: "logo" %> 
+  <%= link_to "My Recipes", root_path, class: "btn btn-lg btn-success", id: "logo" %> 
   <div class="nav-item">
     <%= link_to "link 1", "", class: "btn btn-default btn-warning" %>
   </div>
@@ -7,6 +7,6 @@
     <%= link_to "link 2", "", class: "btn btn-default btn-warning" %>
   </div>
   <div class="nav-item">
-    <%= link_to "link 3", "", class: "btn btn-default btn-warning" %>
+    <%= link_to "New Recipe", new_recipe_path, class: "btn btn-default btn-warning" %>
   </div>
 </header>   
