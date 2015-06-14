@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   # index, show, new, edit, create, update, destroy
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.paginate(page: params[:page], per_page: 4)
   end
 
   def show
@@ -38,6 +38,18 @@ class RecipesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def like
+    @recipe = Recipe.find(params[:id])
+    like = params[:like]
+    @like = Like.create(like: like, recipe: @recipe, chef: @recipe.chef)
+    if @like.valid?
+      flash[:success] = "Your selection was successful"
+    else
+      flash[:warning] = "You can only like/dislike once"
+    end
+    redirect_to :back
   end
 
   private
