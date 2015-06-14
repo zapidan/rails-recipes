@@ -21,6 +21,14 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :chefs, except: [:new]
+
+  get '/register', to: 'chefs#new'
+
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get 'logout', to: 'sessions#destroy'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
