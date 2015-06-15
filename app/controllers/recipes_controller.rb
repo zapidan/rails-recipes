@@ -49,7 +49,7 @@ class RecipesController < ApplicationController
 
   def like
     like = params[:like]
-    @like = Like.create(like: like, recipe: @recipe, chef: @recipe.chef)
+    @like = Like.create(like: like, recipe: @recipe, chef: current_user)
     if @like.valid?
       flash[:success] = "Your selection was successful"
     else

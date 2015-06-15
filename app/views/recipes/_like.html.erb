@@ -1,0 +1,8 @@
+<div class="pull-right">
+  <%= link_to like_recipe_path(recipe, like: true), method: :post do %> 
+    <i class="glyphicon glyphicon-thumbs-up"></i> &nbsp <%= recipe.thumbs_up_total %>
+  <% end %> &nbsp
+  <%= link_to like_recipe_path(recipe, like: false), method: :post do %> 
+    <i class="glyphicon glyphicon-thumbs-down"></i> &nbsp <%= recipe.thumbs_down_total %>
+  <% end %>
+</div>
