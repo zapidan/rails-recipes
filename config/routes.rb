@@ -19,7 +19,11 @@ Rails.application.routes.draw do
     member do 
       post 'like'
     end
+    resources :reviews, only: [:create, :destroy]
   end
+
+  # alias to recipes#show from reviews in case there is a page refresh
+  get '/recipes/:id//reviews', to: 'recipes#show'
 
   resources :chefs, except: [:new, :destroy]
 

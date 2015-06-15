@@ -1,0 +1,15 @@
+<%= render 'reviews/form', object: @review if logged_in? %>
+
+<% if @recipe.reviews.any? %>
+
+  <div class="row">
+      <div class="col-md-8">
+        <br>
+        <h2><strong>Reviews:</strong></h2>
+        <%= will_paginate @reviews %>
+
+        <%= render @reviews %>
+      </div>
+  </div>
+<%= will_paginate @reviews %>
+<% end %>

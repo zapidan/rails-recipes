@@ -74,11 +74,11 @@ h2 {
 }
 
 .chef_info {
-  margin-top: 10 px;
+  margin-top: 10px;
 }
 
 .gravatar {
-  border-radius: 10 px;
+  border-radius: 10px;
 }
 
 .well {
@@ -109,4 +109,14 @@ span.picture {
 
 .show_recipe {
   margin: 10px 10px 10px 10px;
+}
+
+.delete_review_button {
+  margin-top: -5px;
+  margin-bottom: 10px
+}
+
+.error_message_review {
+  margin-left: -200px;
+  width: auto;
 }

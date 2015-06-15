@@ -26,9 +26,10 @@
         <strong>Steps:</strong>
       </p>
       <%= simple_format(@recipe.description) %>
-      <%= render partial: 'like', object: @recipe, as: :recipe %>
+      <%= render partial: 'recipes/like', object: @recipe, as: :recipe %>
     </div>
   </div>
+  <%= render 'reviews/reviews', object: @review if @review %>
 </div>
 
 <h5><%= link_to "Return to Recipes Listing", recipes_path, class: "btn btn-warning bnt-small" %></h5>

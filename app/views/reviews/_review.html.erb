@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="well">
+    <div class="col-md-4 pull-left">
+      <%= link_to gravatar_for(review.chef, size: 75), chef_path(review.chef), class: 'gravatar' %>
+    </div>
+    <p>
+      <strong><%= review.chef.chefname %></strong> says: <%= review.body %>
+    </p>
+    <p>
+      <span class='quiet'><small> created: <%= time_ago_in_words(review.created_at) %> ago,</small></span>
+      <span class='quiet'><small> updated: <%= time_ago_in_words(review.updated_at) %> ago</small></span>
+    </p>
+  </div>
+  <% if logged_in? && current_user.admin? %>
+    <td><%= link_to 'Delete', [@recipe, review], method: :delete, class: "btn btn-small btn-danger pull-right delete_review_button", data: { confirm: "Are you sure?"} %></td>
+  <% end %>
+</div>
