@@ -3,7 +3,12 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :logged_in?
+  helper_method :admin_user, :current_user, :logged_in?
+
+
+  def admin_user
+     redirect_to :back unless current_user.admin?
+  end
 
   def current_user
     @current_user ||= Chef.find(session[:chef_id]) if session[:chef_id]

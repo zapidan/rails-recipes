@@ -4,13 +4,16 @@ class RecipesController < ApplicationController
   before_action :require_user, except: [:show, :index]
   before_action :require_same_user, only: [:edit, :update]
   before_action :current_user, only: :destroy
+  before_action :admin_user, only: :destroy
 
   def index
     @recipes = Recipe.paginate(page: params[:page], per_page: 4)
   end
 
   def show
-    #binding.pry
+    # binding.pry
+    @review = Review.new
+    @reviews = @recipe.reviews.paginate(page: params[:page], per_page: 5) if @recipe.reviews.any?
   end
 
   def new
@@ -59,11 +62,6 @@ class RecipesController < ApplicationController
   end
 
   private
-
-    def admin_user
-      redirect_to recipes_path unless current_user.admin?
-    end
-
     def recipe_params
       params.require(:recipe).permit(:name, :summary, :description, :picture, style_ids: [], ingredient_ids: [])
     end
