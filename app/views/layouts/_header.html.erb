@@ -1,29 +1,61 @@
 <header class="navbar navbar-fixed-top navbar-default">
-  <%= link_to "My Recipes", root_path, class: "btn btn-lg btn-success", id: "logo" %> 
-  <div class="nav-item">
-    <%= link_to "link 1", "", class: "btn btn-default btn-warning" %>
-  </div>
-  <div class="nav-item">
-    <%= link_to "link 2", "", class: "btn btn-default btn-warning" %>
-  </div>
-  <% if logged_in? %>
-    <li class="nav-item">
-      <%= link_to "New Recipe", new_recipe_path, class: "btn btn-default btn-warning" %>
-    </li>
-    <li class="nav-item dropdown">
+  <div class="container">
+    <%= link_to "My Recipes", root_path, class: "btn btn-lg btn-success", id: "logo" %> 
+    
+  <li class="nav-item dropdown">
+    <%= link_to '#', class: "btn btn-default btn-danger btn-toggle", "data-toggle" => "dropdown" do %>
+      Styles <b class="caret"></b>
+    <% end %>
+    <ul class="dropdown-menu">
+      <% Style.all.each do |style| %>
+        <li><%= link_to style.name, style_path(style) %></li>
+      <% end %>
+      <% if logged_in? %>
+        <li class="divider"></li>
+        <li>
+          <%= link_to new_style_path do %>
+            New Style
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </li>  
+    
+   <li class="nav-item dropdown">
       <%= link_to '#', class: "btn btn-default btn-danger btn-toggle", "data-toggle" => "dropdown" do %>
-      <%= current_user.chefname %><b class="caret"></b>
+        Ingredients <b class="caret"></b>
       <% end %>
       <ul class="dropdown-menu">
-        <li><%= link_to "View Profile", chef_path(current_user) %></li>
-        <li><%= link_to "Edit Profile", edit_chef_path(current_user) %></li>
-        <li class="divider"></li>
-        <li><%= link_to "Logout", logout_path %></li>
+        <% Ingredient.all.each do |ingredient| %>
+          <li><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
+        <% end %>
+        <% if logged_in? %>
+          <li class="divider"></li>
+          <li>
+            <%= link_to "New Ingredient", new_ingredient_path %>
+          </li>
+      <% end %>
       </ul>
-    </li>    
-    <% else %>
-      <div class="nav-item">
-        <%= link_to "Log in", login_path, class: "btn btn-default btn-success" %>
-      </div>
-  <% end %>
+    </li>  
+    <% if logged_in? %>
+      <li class="nav-item">
+        <%= link_to "New Recipe", new_recipe_path, class: "btn btn-default btn-warning" %>
+      </li>
+      <li class="nav-item dropdown">
+        <%= link_to '#', class: "btn btn-default btn-danger btn-toggle", "data-toggle" => "dropdown" do %>
+        <%= current_user.chefname %><b class="caret"></b>
+        <% end %>
+        <ul class="dropdown-menu">
+          <li><%= link_to "View Profile", chef_path(current_user) %></li>
+          <li><%= link_to "Edit Profile", edit_chef_path(current_user) %></li>
+          <li class="divider"></li>
+          <li><%= link_to "Logout", logout_path %></li>
+        </ul>
+      </li>    
+      <% else %>
+        <div class="nav-item">
+          <%= link_to "Log in", login_path, class: "btn btn-default btn-success" %>
+        </div>
+    <% end %>
+  </div>
 </header>   
