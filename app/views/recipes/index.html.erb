@@ -26,7 +26,7 @@
         <p>Styles: <%= render recipe.styles %></p>
       <% end %>
       <% if recipe.ingredients.any? %>
-        <p>Recipes: <%= render recipe.ingredients %></p>
+        <p>Ingredients: <%= render recipe.ingredients %></p>
       <% end %>
       <p>
         <span class='quiet'><small> created: <%= time_ago_in_words(recipe.created_at) %> ago,</small></span>
