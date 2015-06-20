@@ -41,6 +41,9 @@
       <li class="nav-item">
         <%= link_to "New Recipe", new_recipe_path, class: "btn btn-default btn-warning" %>
       </li>
+      <li class="nav-item">
+        <%= link_to "Chefs", chefs_path, class: "btn btn-default btn-success" %>
+      </li>  
       <li class="nav-item dropdown">
         <%= link_to '#', class: "btn btn-default btn-danger btn-toggle", "data-toggle" => "dropdown" do %>
         <%= current_user.chefname %><b class="caret"></b>
@@ -51,7 +54,7 @@
           <li class="divider"></li>
           <li><%= link_to "Logout", logout_path %></li>
         </ul>
-      </li>    
+      </li>  
       <% else %>
         <li class="nav-item">
           <%= link_to "Log in", login_path, class: "btn btn-default btn-success" %>
