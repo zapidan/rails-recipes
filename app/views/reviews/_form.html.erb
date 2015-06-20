@@ -1,15 +1,14 @@
-<div class="error_message_review">
 <%= render 'shared/errors', obj: @review %>
-</div>
 
-<div class="col-md-8">
-  <div class= "well">
-    <%= form_for @review, url: recipe_reviews_path(@recipe)  do |f| %>
-   
-    <%= f.label :review %>
-    <%= f.text_area :body, rows: 5 %>
+<div class="row">
+  <div class="col-md-8">
+    <div class= "well">
+      <%= form_for @review, url: recipe_reviews_path(@recipe) do |f| %>
+        <%= f.label :review %>
+        <%= f.text_area :body, rows: 5 %>
 
-    <%= f.submit (@review.new_record? ? "Add Review" : "Edit Review"), class: "btn btn-success" %>
-  <% end %>
+        <%= f.submit (@review.new_record? ? "Add Review" : "Edit Review"), class: "btn btn-success" %>
+      <% end %>
+    </div>
   </div>
 </div>

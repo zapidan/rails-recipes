@@ -1,8 +1,8 @@
-<div class="row">
-  <div class="well">
-    <div class="col-md-4 pull-left">
+<div class="row second-child">
+  <div class="col-md-2 pull-left">
       <%= link_to gravatar_for(review.chef, size: 75), chef_path(review.chef), class: 'gravatar' %>
-    </div>
+  </div>
+  <div class="col-md-10 well">
     <p>
       <strong><%= review.chef.chefname %></strong> says: <%= review.body %>
     </p>
