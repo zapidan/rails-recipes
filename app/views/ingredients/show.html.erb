@@ -9,32 +9,34 @@
   </li>
 </ul>
 
-<%= will_paginate @recipes %>
+<div class="recipes-container">
+  <%= will_paginate @recipes %>
 
-<% @ingredient.recipes.each do |recipe| %>
-  <div class="row">
-    <div class="col-md-2">
-      <section class="chef_info center">
-        <%= link_to gravatar_for(recipe.chef , size: 100), chef_path(recipe.chef) %>
-        <h5>Chef name: <%= recipe.chef.chefname %></h5>
-      </section>
+  <% @ingredient.recipes.each do |recipe| %>
+    <div class="row">
+      <div class="col-md-2">
+        <section class="chef_info">
+          <%= link_to gravatar_for(recipe.chef , size: 100), chef_path(recipe.chef) %>
+          <h5>Chef name: <%= recipe.chef.chefname %></h5>
+        </section>
+      </div>
+      <div class="col-lg-8 well">
+        <h4><%= link_to recipe.name, recipe_path(recipe) %></h4>
+        <p><%= recipe.summary %></p>
+        <%= render partial: 'styles/styles', object: recipe, as: :recipe %>
+        <%= render partial: 'ingredients/ingredients', object: recipe, as: :recipe %>
+        <p>
+          <span class='quiet'><small> created: <%= time_ago_in_words(recipe.created_at) %> ago,</small></span>
+          <span class='quiet'><small> updated: <%= time_ago_in_words(recipe.updated_at) %> ago</small></span>
+        </p>
+        <%= render partial: 'recipes/like', object: recipe, as: :recipe %>
+      </div>
+      <div class="col-md-2">
+        <%= image_tag(recipe.picture.url, size: "250x150", class: "gravatar") if recipe.picture? %>
+      </div>
     </div>
-    <div class="col-lg-8 well">
-      <h4><%= link_to recipe.name, recipe_path(recipe) %></h4>
-      <p><%= recipe.summary %></p>
-      <%= render partial: 'styles/styles', object: recipe, as: :recipe %>
-      <%= render partial: 'ingredients/ingredients', object: recipe, as: :recipe %>
-      <p>
-        <span class='quiet'><small> created: <%= time_ago_in_words(recipe.created_at) %> ago,</small></span>
-        <span class='quiet'><small> updated: <%= time_ago_in_words(recipe.updated_at) %> ago</small></span>
-      </p>
-      <%= render partial: 'recipes/like', object: recipe, as: :recipe %>
-    </div>
-    <div class="col-md-2">
-      <%= image_tag(recipe.picture.url, size: "250x150", class: "gravatar") if recipe.picture? %>
-    </div>
-  </div>
-  <hr/>
-<% end %>
+    <hr/>
+  <% end %>
+</div>
 
 <%= will_paginate @recipes %>
