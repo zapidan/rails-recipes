@@ -1,32 +1,30 @@
 <div class="center jumbotron">
-  <h1>Welcome to MyRecipes App</h1>
+  <h1>Welcome to My Recipes App</h1>
 
   <h2>
-    This is the home page for the Professional Ruby on Rails Developer Course
+    You will be able to browse for different recipes. If you want to vote, add comments,
+    or even add your own recipes, sign up below!
   </h2>
 
   <%= link_to "Sign up now!", register_path, class: "btn btn-lg btn-success" %>
 </div>
+
 <div class="row">
   <div class="col-lg-4">
-    <h3 class="midrow">
-      View Recipes as Guest User
-    </h3>
-    <h2 class="left">Browse and view recipes as a guest and Sign up later</h2>  
-    <p><%= link_to "Browse Recipes", recipes_path, class: "btn btn-warning btn-small" %></p>
+    <h3 class="midrow">View Recipes as Guest User</h3>
+    <h2 class="left">Browse and view recipes as a guest and Sign up later</h2>
+    <%= link_to "Browse Recipes", recipes_path, class: "btn btn-warning btn-small" %>
   </div>
+
   <div class="col-lg-4">
-    <h3 class="midrow">
-      Sign in to your account
-    </h3>
-    <h2 class="left">Add/update your recipes and vote for your favorite recipes</h2>  
-    <p><%= link_to "Log in to your account", login_path, class: "btn btn-warning btn-small" %></p>
+    <h3 class="midrow">Sign in to your account</h3>
+    <h2 class="left">Add/update your recipes</h2>
+    <%= link_to "Log in to your account", login_path, class: "btn btn-warning btn-small" %>
   </div>
+  
   <div class="col-lg-4">
-    <h3 class="midrow">
-      View Recipes as Guest User
-    </h3>
-    <h2 class="left">Browse and view recipes as a guest and Sign up later</h2>  
-    <p><%= link_to "Browse Recipes", "", class: "btn btn-warning btn-small" %></p>
+    <h3 class="midrow">View Recipes as Guest User</h3>
+    <h2 class="left">Browse and view chefs and access their famous recipes</h2>  
+    <%= link_to "Browse Chefs", chefs_path, class: "btn btn-warning btn-small" %>
   </div>
 </div>
