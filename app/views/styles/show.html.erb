@@ -23,8 +23,8 @@
       <div class="col-lg-8 well">
         <h4><%= link_to recipe.name, recipe_path(recipe) %></h4>
         <p><%= recipe.summary %></p>
-        <p>Styles: <%= render recipe.styles %></p>
-        <p>Recipes: <%= render recipe.ingredients %></p>
+        <%= render partial: 'styles/styles', object: recipe, as: :recipe %>
+        <%= render partial: 'ingredients/ingredients', object: recipe, as: :recipe %>
         <p>
           <span class='quiet'><small> created: <%= time_ago_in_words(recipe.created_at) %> ago,</small></span>
           <span class='quiet'><small> updated: <%= time_ago_in_words(recipe.updated_at) %> ago</small></span>
