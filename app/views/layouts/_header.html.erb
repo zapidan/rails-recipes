@@ -10,7 +10,7 @@
       <% Style.all.each do |style| %>
         <div class="row">
           <li class="style-list-item"><%= link_to style.name, style_path(style), class: "style-remove-link" %>
-            <% if current_user.admin? %>
+            <% if logged_in? && current_user.admin? %>
               <%= link_to "<i class='glyphicon glyphicon-remove pull-right style-remove-icon'></i>".html_safe, 
               style, method: :delete, data: { confirm: "Are you sure?" } %>
             <% end %>
@@ -37,7 +37,7 @@
         <div class="row">
           <li class="ingredient-list-item">
             <%= link_to ingredient.name, ingredient_path(ingredient), class: "ingredient-remove-link" %>
-            <% if current_user.admin? %>
+            <% if logged_in? && current_user.admin? %>
               <%= link_to "<i class='glyphicon glyphicon-remove pull-right ingredient-remove-icon'></i>".html_safe, 
               ingredient, method: :delete, data: { confirm: "Are you sure?" } %>
             <% end %>
