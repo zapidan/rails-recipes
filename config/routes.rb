@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   # alias to recipes#show from reviews in case there is a page refresh
   get '/recipes/:id//reviews', to: 'recipes#show'
 
-  resources :chefs, except: [:new, :destroy]
+  resources :chefs, except: :new
 
   get '/register', to: 'chefs#new'
 
