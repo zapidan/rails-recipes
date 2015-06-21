@@ -13,6 +13,7 @@ class IngredientsController < ApplicationController
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
+    @ingredient.name = @ingredient.name.to_s.capitalize
     if @ingredient.save
       flash[:success] = "Ingredient was added successfully"
       redirect_to recipes_path

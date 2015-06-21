@@ -14,6 +14,7 @@ class StylesController < ApplicationController
 
   def create
     @style = Style.new(style_params)
+    @style.name = @style.name.to_s.capitalize
     if @style.save
       flash[:success] = "The style was created successfully"
       redirect_to recipes_path
