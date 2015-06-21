@@ -8,7 +8,14 @@
     <% end %>
     <ul class="dropdown-menu">
       <% Style.all.each do |style| %>
-        <li><%= link_to style.name, style_path(style) %></li>
+        <div class="row">
+          <li class="style-list-item"><%= link_to style.name, style_path(style), class: "style-remove-link" %>
+            <% if current_user.admin? %>
+              <%= link_to "<i class='glyphicon glyphicon-remove pull-right style-remove-icon'></i>".html_safe, 
+              style, method: :delete, data: { confirm: "Are you sure?" } %>
+            <% end %>
+          </li>
+        </div>
       <% end %>
       <% if logged_in? %>
         <li class="divider"></li>
@@ -27,14 +34,22 @@
       <% end %>
       <ul class="dropdown-menu">
         <% Ingredient.all.each do |ingredient| %>
-          <li><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
+        <div class="row">
+          <li class="ingredient-list-item">
+            <%= link_to ingredient.name, ingredient_path(ingredient), class: "ingredient-remove-link" %>
+            <% if current_user.admin? %>
+              <%= link_to "<i class='glyphicon glyphicon-remove pull-right ingredient-remove-icon'></i>".html_safe, 
+              ingredient, method: :delete, data: { confirm: "Are you sure?" } %>
+            <% end %>
+          </li>
+        </div>
         <% end %>
         <% if logged_in? %>
           <li class="divider"></li>
           <li>
             <%= link_to "New Ingredient", new_ingredient_path %>
           </li>
-      <% end %>
+        <% end %>
       </ul>
     </li>  
     <% if logged_in? %>

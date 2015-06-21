@@ -1,6 +1,7 @@
 class StylesController < ApplicationController
   # index, show, new, edit, create, update, destroy
-    before_action :require_user, except: [:show, :create]
+    before_action :require_user, except: :show
+    before_action :admin_user, only: :destroy
 
   def show
     @style = Style.find(params[:id])
@@ -19,6 +20,12 @@ class StylesController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def destroy
+    Style.find(params[:id]).destroy
+    flash[:success] = "Style Deleted"
+    redirect_to :back || root_path
   end
 
   private

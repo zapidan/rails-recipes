@@ -33,8 +33,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
 
-  resources :styles, only: [:new, :create, :show]
-  resources :ingredients, only: [:new, :create, :show]
+  resources :styles, only: [:new, :create, :show, :destroy]
+  resources :ingredients, only: [:new, :create, :show, :destroy]
 
 
   # Example of regular route:

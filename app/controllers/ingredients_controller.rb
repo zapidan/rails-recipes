@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
     before_action :require_user, except: :show
-
+    before_action :admin_user, only: :destroy
 
   def show
     @ingredient = Ingredient.find(params[:id])
@@ -19,6 +19,12 @@ class IngredientsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def destroy
+    Ingredient.find(params[:id]).destroy
+    flash[:success] =  "Ingredient Deleted"
+    redirect_to :back || root_path
   end
 
   private

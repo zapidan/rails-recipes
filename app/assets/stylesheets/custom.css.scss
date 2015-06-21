@@ -123,3 +123,17 @@ span.picture {
 .second-child {
   margin-right: 0px;
 }
+
+.ingredient-list-item, .style-list-item {
+  margin-right: 35px;
+}
+
+.ingredient-remove-link, .style-remove-link {
+  margin-left: 35px;
+  color: black;
+  text-decoration: none !important;
+}
+
+.ingredient-remove-icon, .style-remove-icon {
+  top: 4px;
+}
