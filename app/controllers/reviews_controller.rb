@@ -1,9 +1,9 @@
 class ReviewsController < ApplicationController
   before_action :require_user
   before_action :admin_user, only: :destroy
+  before_action :set_recipe
 
   def create
-    @recipe = Recipe.find(params[:recipe_id])
     @review = @recipe.reviews.build(review_params)
     @review.chef = current_user
     @reviews = @recipe.reviews.paginate(page: params[:page], per_page: 5) if @recipe.reviews.any?
@@ -18,7 +18,6 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
-    @recipe = Recipe.find(params[:recipe_id])
     if @review.destroy
       flash[:success] =  "Recipe Deleted"
       redirect_to recipe_path(@recipe)
@@ -30,5 +29,9 @@ class ReviewsController < ApplicationController
   private
     def review_params
       params.require(:review).permit(:body)
+    end
+
+    def set_recipe
+      @recipe = Recipe.find(params[:recipe_id])
     end
 end

@@ -1,10 +1,10 @@
 class StylesController < ApplicationController
   # index, show, new, edit, create, update, destroy
+    before_action :set_style, only: [:show, :destroy]
     before_action :require_user, except: :show
     before_action :admin_user, only: :destroy
 
   def show
-    @style = Style.find(params[:id])
     @recipes = @style.recipes.paginate(page: params[:page], per_page: 4)
   end
 
@@ -24,13 +24,17 @@ class StylesController < ApplicationController
   end
 
   def destroy
-    Style.find(params[:id]).destroy
+    @style.destroy
     flash[:success] = "Style Deleted"
-    redirect_to :back || root_path
+    redirect_to recipes_path
   end
 
   private
     def style_params
       params.require(:style).permit(:name)
+    end
+
+    def set_style
+      @style = Style.find(params[:id])
     end
 end

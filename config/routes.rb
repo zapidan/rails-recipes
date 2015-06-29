@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
 
   # alias to recipes#show from reviews in case there is a page refresh
-  get '/recipes/:id//reviews', to: 'recipes#show'
+  get '/recipes/:id/reviews', to: 'recipes#show'
 
   resources :chefs, except: :new
 

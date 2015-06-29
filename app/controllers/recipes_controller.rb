@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   # index, show, new, edit, create, update, destroy
-  before_action :set_recipe, only: [:edit, :update, :show, :like]
+  before_action :set_recipe, only: [:edit, :update, :show, :like, :destroy]
   before_action :require_user, except: [:show, :index]
   before_action :require_same_user, only: [:edit, :update]
   before_action :current_user, only: :destroy
@@ -45,7 +45,7 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    Recipe.find(params[:id]).destroy
+    @recipe.destroy
     flash[:success] =  "Recipe Deleted"
     redirect_to recipes_path
   end

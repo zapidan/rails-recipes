@@ -1,8 +1,9 @@
 class ChefsController < ApplicationController
   # index, show, new, edit, create, update, destroy
 
-  before_action :set_chef, only: [:edit, :update, :show]
+  before_action :set_chef, only: [:edit, :update, :show, :destroy]
   before_action :require_same_user, only: [:edit, :update]
+  before_action :admin_user, only: :destroy
 
   def index
     @chefs = Chef.paginate(page: params[:page], per_page: 4)
@@ -41,7 +42,6 @@ class ChefsController < ApplicationController
   end
 
   def destroy
-    @chef = Chef.find(params[:id])
     @chef.destroy
     flash[:success] = "Chef was deleted"
     redirect_to chefs_path

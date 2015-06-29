@@ -1,10 +1,10 @@
 class IngredientsController < ApplicationController
+    before_action :set_ingredient, only: [:show, :destroy]
     before_action :require_user, except: :show
     before_action :admin_user, only: :destroy
 
   def show
-    @ingredient = Ingredient.find(params[:id])
-    @ingredients = @ingredient.recipes.paginate(page: params[:page], per_page: 4)
+    @recipes = @ingredient.recipes.paginate(page: params[:page], per_page: 4)
   end
 
   def new
@@ -23,14 +23,18 @@ class IngredientsController < ApplicationController
   end
 
   def destroy
-    Ingredient.find(params[:id]).destroy
+    @ingredient.destroy
     flash[:success] =  "Ingredient Deleted"
-    redirect_to :back || root_path
+    redirect_to recipes_path || root_path
   end
 
   private
     def ingredient_params
       params.require(:ingredient).permit(:name)
+    end
+
+    def set_ingredient
+      @ingredient = Ingredient.find(params[:id])
     end
 
 end
