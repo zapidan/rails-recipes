@@ -2,6 +2,10 @@
 
 Rails website to browse and add different recipes
 
+Feel free to play around with the application to browse and add new recipes or reviews.
+
+(https://my-recipes-2015.herokuapp.com)
+
 ## Development Use:
 
 Clone repo:
