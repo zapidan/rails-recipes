@@ -1,4 +1,4 @@
-# My Recipes
+# My Recipes.
 
 Rails website to browse and add different recipes
 
